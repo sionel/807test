@@ -50,6 +50,6 @@ app.prepare().then(() => {
     return handle(req, res);
   });
   httpServer.listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`> Ready on http://113.198.233.57:${port}`);
   });
 });
