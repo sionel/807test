@@ -8,6 +8,7 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const proverb = require("./proverb");
 app.prepare().then(() => {
   const expressServer = express();
 
@@ -28,10 +29,16 @@ app.prepare().then(() => {
       userCount: io.engine.clientsCount,
     });
     socket.on("sendMessage", (data) => {
-      console.log(data);
       chatNamespace.emit("receiveMessage", {
         ...data,
-        time_stamp: new Date().getTime(),
+        timeStamp: new Date().getTime(),
+      });
+      const randomIndex = Math.floor(Math.random() * proverb.length);
+
+      chatNamespace.emit("receiveMessage", {
+        userName: "관리자",
+        message: proverb[randomIndex],
+        timeStamp: new Date().getTime(),
       });
     });
   });
