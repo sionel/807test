@@ -16,19 +16,19 @@ function useSocket(url: string) {
     };
   }, [url]);
 
-  const on = (event, handler) => {
+  const on = (event: any, handler: any) => {
     if (socket && isConnected.current) {
       socket.on(event, handler);
     }
   };
 
-  const off = (event, handler) => {
+  const off = (event: any, handler: any) => {
     if (socket && isConnected.current) {
       socket.off(event, handler);
     }
   };
 
-  const emit = (event, data) => {
+  const emit = (event: any, data: any) => {
     if (socket && isConnected.current) {
       socket.emit(event, data);
     }
