@@ -5,7 +5,9 @@ import useSocket from "@/util/useSocket";
 
 const Chat = () => {
   const [chatList, setChatList] = useState<any[]>([]);
-  const { socket, on, off, emit } = useSocket("http://localhost:3000/chat");
+  const { socket, on, off, emit } = useSocket(
+    "http://113.198.233.57:3000/chat"
+  );
   const [message, setMessage] = useState("");
   const [userCount, setUserCount] = useState(0);
   useEffect(() => {

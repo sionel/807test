@@ -10,7 +10,7 @@ const Calc = () => {
   const [number2, setNumber2] = useState("");
 
   const handleClickKorPost = () => {
-    fetch("http://localhost:3000/api/record", {
+    fetch("http://113.198.233.57:3000/api/record", {
       method: "POST",
       body: JSON.stringify({
         name: "테스트",
@@ -25,7 +25,7 @@ const Calc = () => {
       });
   };
   const handleClickEngPost = () => {
-    fetch("http://localhost:3000/api/record", {
+    fetch("http://113.198.233.57:3000/api/record", {
       method: "POST",
       body: JSON.stringify({
         name: "테스트",
@@ -40,7 +40,7 @@ const Calc = () => {
       });
   };
   const handleClickKorGet = () => {
-    fetch("http://localhost:3000/api/record?type=kor", {
+    fetch("http://113.198.233.57:3000/api/record?type=kor", {
       method: "GET",
     })
       .then((e) => {
@@ -51,7 +51,7 @@ const Calc = () => {
       });
   };
   const handleClickEngGet = () => {
-    fetch("http://localhost:3000/api/record?type=eng", {
+    fetch("http://113.198.233.57:3000/api/record?type=eng", {
       method: "GET",
     })
       .then((e) => {
