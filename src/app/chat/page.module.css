@@ -1,0 +1,45 @@
+.main {
+  width: 80%;
+  min-width: 500px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  height: 800px;
+  border: 1px solid black;
+  overflow-y: auto;
+}
+.chatList {
+  flex: 1;
+}
+.stikyComponent {
+  position: sticky;
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  bottom: 0px;
+  width: auto;
+  margin: 3px;
+  height: 30px;
+}
+
+.magInput {
+  flex: 1;
+}
+.sendButton {
+  width: 50px;
+}
+
+.my {
+  margin: 10px;
+  background-color: #00cbff;
+}
+.other {
+  margin: 10px;
+  background-color: #e0e0e0;
+}
