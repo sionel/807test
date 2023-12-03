@@ -2,12 +2,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import useSocket from "@/util/useSocket";
+const { ip } = require("../../util/mode");
 
 const Chat = () => {
   const [chatList, setChatList] = useState<any[]>([]);
-  const { socket, on, off, emit } = useSocket(
-    "http://113.198.233.57:3000/chat"
-  );
+  const { socket, on, off, emit } = useSocket(`${ip}/chat`);
   const [message, setMessage] = useState("");
   const [userCount, setUserCount] = useState(0);
   useEffect(() => {

@@ -5,68 +5,75 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>기말 과제</h1>
-      <h3>웹 프로그래밍 기말 과제입니다.</h3>
-      <h3>시험 대신 과제로 대체하고 각 항목별로 점수 부여.</h3>
-      <h3>추가 알림 내용 어쩌구....</h3>
-      <h3>아래 파일을 받아 코드를 작성 후 제출 하면 됩니다</h3>
+      <h1>기말 고사 대비 연습문제</h1>
+      <h3></h3>
       <a href="/sample.zip">다운로드</a>
       <div className={styles.task}>
         <Link href={"/static"}>
           <h3>{"1. 계산기 구현 << 클릭 "}</h3>
         </Link>
         <strong>2항 사칙연산이 가능한 계산기를 구현하라</strong>
-        <p>조건</p>
-        <ol>
-          <li>
-            <strong>0~100 까지의 자연수 계산이 가능하여야 함</strong>
-          </li>
-          <li>
-            0으로 나누는 경우에 한해서만 예외처리를 적용할 것 그 외 시스템적
-            오류는 감점 대상이 아님
-          </li>
-          <li>해당 문제에 한해서만 css 추가 적용시 추가 점수 부여</li>
-        </ol>
+
+        <strong>0~100 까지의 자연수 계산이 가능하여야 함</strong>
       </div>
       <div className={styles.task}>
         <Link href={"/apitest"}>
           <h3>{"2. api 적용 구현 << 클릭 "}</h3>
         </Link>
-        <strong>서버로부터 데이터를 송수신을 하라</strong>
-        <p>조건</p>
+        <strong>소캣 서버를 연결하여 채팅을 구현하라</strong>
+        <hr />
+        <h3>API 명세서</h3>
         <ol>
-          <li>
-            <strong>다음 주소와 api 통신을 적용</strong>
-          </li>
-          <li>
-            <p>GET api</p>
-            <p>GET :http://113.198.233.57:3000/api/rest</p>
-            <p>해당 페이지에 접근 시 받는 response 에 담긴 문구를 출력</p>
-          </li>
-          <li>
-            <p>POST api</p>
-            <p>POST :http://113.198.233.57:3000/api/rest</p>
+          <div className="endpoint">
+            <h4>1. POST 테스트</h4>
+            <strong>POST : </strong>
+            <code>http://113.198.233.57:3000/api/test/record</code>
+          </div>
+
+          <div className="description">
+            <h4>Description</h4>
             <p>
-              본인의 이름, 학번을 담아서 전송 후 response에 담긴 문구를 출력
+              학생의 학번과 점수를 서버로 전송하고, 서버로부터 반환되는 메시지를
+              출력합니다.
             </p>
-          </li>
-          <strong>POST api 명세</strong>
-          <table>
-            <thead>
-              <tr className={styles.flexContainer}>
-                <th>api 주소</th>
-                <th>설명</th>
-                <th>데이터 형식</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className={styles.flexContainer}>
-                <td>POST : http://113.198.233.57:3000/api/rest </td>
-                <td>학번 이름 전송 (json 형식으로)</td>
-                <td>name : 이름, number : 학번</td>
-              </tr>
-            </tbody>
-          </table>
+          </div>
+
+          <div className="request-format">
+            <h4>Request Format</h4>
+            <ul>
+              <li>
+                <strong>Method :</strong> POST
+              </li>
+              <li>
+                <strong>Content-Type :</strong> <code>application/json</code>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Request Body</h4>
+            <pre>{`{  name: string ,  korScore: number}`}</pre>
+          </div>
+          <hr />
+          <div className="endpoint">
+            <h4>2. GET 테스트</h4>
+            <strong>GET : </strong>
+            <code>GET http://113.198.233.57:3000/api/test/record?type=kor</code>
+          </div>
+
+          <div className="description">
+            <h4>Description</h4>
+            <p>서버로부터 반환되는 메시지를 출력합니다.</p>
+          </div>
+
+          <div className="request-format">
+            <h4>Request Format</h4>
+            <ul>
+              <li>
+                <strong>Method :</strong> GET
+              </li>
+            </ul>
+          </div>
         </ol>
       </div>
       <div className={styles.task}>
@@ -74,17 +81,18 @@ export default function Home() {
           <h3>{"3. 채팅 구현 << 클릭 "}</h3>
         </Link>
         <strong>소캣 서버를 연결하여 채팅을 구현하라</strong>
-        <p>조건</p>
+        <hr />
+        <h3>조건</h3>
         <ol>
           <li>
-            <strong>다음 주소와 소캣 통신을 적용</strong>
+            <h4>다음 주소와 소캣 통신을 적용</h4>
           </li>
           <li>
-            <p>socket 주소</p>
+            <h4>socket 주소</h4>
             <p>http://113.198.233.57:3000/chat</p>
           </li>
           <li>
-            <p>이벤트의 이름들은 다음과 같다</p>
+            <h4>이벤트의 이름들은 다음과 같다</h4>
 
             <strong>수신 이벤트</strong>
             <table>

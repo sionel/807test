@@ -11,14 +11,18 @@ export async function POST(request: NextRequest) {
 
   logger.info(`이름 : ${name}`);
 
-  kor = korScore || kor;
-  eng = engScore || eng;
+  if (typeof korScore !== "number") {
+    return NextResponse.json("서식이 잘못되었습니다", { status: 200 });
+  }
+  kor = korScore > 100 ? korScore % 100 : korScore;
+  // eng = engScore >= 100 ? engScore % 100 : engScore;
 
-  if (engScore) {
-    return NextResponse.json(`영어 점수 ${eng} post 성공`, {
-      status: 200,
-    });
-  } else if (korScore) {
+  // if (engScore) {
+  //   return NextResponse.json(`영어 점수 ${eng} post 성공`, {
+  //     status: 200,
+  //   });
+  // } else
+  if (korScore) {
     return NextResponse.json(`국어 점수 ${kor} post 성공`, {
       status: 200,
     });
@@ -32,14 +36,16 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get("type");
 
   if (type === "kor") {
-    return NextResponse.json(`kor 점수 ${kor} kor-get 성공`, {
+    return NextResponse.json(`국어 점수 ${kor} get 성공`, {
       status: 200,
     });
-  } else if (type === "eng") {
-    return NextResponse.json(`eng 점수 ${eng} eng-get 성공`, {
-      status: 200,
-    });
-  } else {
+  }
+  // else if (type === "eng") {
+  //   return NextResponse.json(`영어 점수 ${eng} get 성공`, {
+  //     status: 200,
+  //   });
+  // }
+  else {
     return NextResponse.json("타입이 틀렸습니다", { status: 200 });
   }
 }
