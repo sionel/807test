@@ -8,12 +8,12 @@ const Calc = () => {
   const [name1, setName1] = useState("");
   const [number1, setNumber1] = useState("");
 
-  const handleClickKorPost = () => {
+  const handleClickPostScore = () => {
     fetch(`${ip}/api/test/record`, {
       method: "POST",
       body: JSON.stringify({
         name: "테스트",
-        korScore: Number(number1),
+        score: Number(number1),
       }),
     })
       .then((e) => {
@@ -23,8 +23,8 @@ const Calc = () => {
         setLog([...log, text]);
       });
   };
-  const handleClickKorGet = () => {
-    fetch(`${ip}/api/test/record?type=kor`, {
+  const handleClickGetScore = () => {
+    fetch(`${ip}/api/test/record?type=score`, {
       method: "GET",
     })
       .then((e) => {
@@ -55,16 +55,16 @@ const Calc = () => {
             value={name1}
           />
           <input
-            placeholder="국어 점수"
+            placeholder="점수"
             onChange={(e) => setNumber1(e.target.value)}
             value={number1}
             type="number"
           />
-          <button onClick={handleClickKorPost}>post</button>
+          <button onClick={handleClickPostScore}>post</button>
         </div>
         <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
-          <div>{`http://113.198.233.57:3000/api/test/record?type=kor`}</div>
-          <button onClick={handleClickKorGet}>get</button>
+          <div>{`http://113.198.233.57:3000/api/test/record?type=score`}</div>
+          <button onClick={handleClickGetScore}>get</button>
         </div>
       </div>
       <div className={styles.box}>

@@ -3,19 +3,27 @@ import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import { type NextRequest } from "next/server";
 
-let score = 10;
+let eng = 10;
+let kor = 10;
 
 export async function POST(request: NextRequest) {
-  const { name, score: clientScore } = await request.json();
+  const { name, engScore, korScore } = await request.json();
 
   logger.info(`이름 : ${name}`);
 
-  if (typeof score !== "number") {
+  if (typeof korScore !== "number") {
     return NextResponse.json("서식이 잘못되었습니다", { status: 200 });
   }
-  score = clientScore > 100 ? clientScore % 100 : clientScore;
-  if (score) {
-    return NextResponse.json(`점수 ${score} post 성공`, {
+  kor = korScore > 100 ? korScore % 100 : korScore;
+  // eng = engScore >= 100 ? engScore % 100 : engScore;
+
+  // if (engScore) {
+  //   return NextResponse.json(`영어 점수 ${eng} post 성공`, {
+  //     status: 200,
+  //   });
+  // } else
+  if (korScore) {
+    return NextResponse.json(`국어 점수 ${kor} post 성공`, {
       status: 200,
     });
   } else {
@@ -27,11 +35,17 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const type = searchParams.get("type");
 
-  if (type === "score") {
-    return NextResponse.json(`점수 ${score} get 성공`, {
+  if (type === "kor") {
+    return NextResponse.json(`국어 점수 ${kor} get 성공`, {
       status: 200,
     });
-  } else {
+  }
+  // else if (type === "eng") {
+  //   return NextResponse.json(`영어 점수 ${eng} get 성공`, {
+  //     status: 200,
+  //   });
+  // }
+  else {
     return NextResponse.json("타입이 틀렸습니다", { status: 200 });
   }
 }

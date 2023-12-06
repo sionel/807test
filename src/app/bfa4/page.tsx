@@ -2,12 +2,12 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 
-export default function Home() {
+const Test = () => {
   return (
     <main className={styles.main}>
-      <h1>기말 고사 대비 연습문제</h1>
+      <h1>A분반 기말고사 문제</h1>
       <h3></h3>
-      <a href="/sample.zip">다운로드</a>
+      <a href="/bfa4test.zip">다운로드</a>
       <div className={styles.task}>
         <Link href={"/static"}>
           <h3>{"1. 계산기 구현 << 클릭 "}</h3>
@@ -133,4 +133,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default Test;

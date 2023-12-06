@@ -90,7 +90,7 @@ const Chat = () => {
             onChange={(e) => {
               setMessage(e.target.value);
             }}
-          ></input>
+          />
           <button className={styles.sendButton} onClick={sendMessage}>
             전송
           </button>
