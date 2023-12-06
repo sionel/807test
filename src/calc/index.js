@@ -9,7 +9,7 @@ let operation = "";
 
 buttons.map((button) => {
   button.addEventListener("click", (e) => {
-    let value = Number(e.target.innerText);
+    let value = e.target.innerText;
 
     switch (value) {
       case "AC":
