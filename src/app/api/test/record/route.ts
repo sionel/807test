@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   logger.info(`이름 : ${name} : 점수 : ${clientScore}`);
 
   if (typeof score !== "number") {
-    return new Response("서식이 잘못되었습니다!", {
+    return NextResponse.json("서식이 잘못되었습니다!", {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   }
   score = clientScore > 100 ? clientScore % 100 : clientScore;
   if (score) {
-    return new Response(`점수 ${score} post 성공`, {
+    return NextResponse.json(`점수 ${score} post 성공`, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } else {
-    return new Response(`서식이 잘못되었습니다`, {
+    return NextResponse.json(`서식이 잘못되었습니다`, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get("type");
 
   if (type === "score") {
-    return new Response(`점수 ${score} get 성공`, {
+    return NextResponse.json(`점수 ${score} get 성공`, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } else {
-    return new Response(`타입이 틀렸습니다`, {
+    return NextResponse.json(`타입이 틀렸습니다`, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",

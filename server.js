@@ -2,7 +2,7 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const next = require("next");
 const express = require("express");
-const cors = require("cors"); // 추가
+const cors = require("cors");
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -12,7 +12,7 @@ const handle = app.getRequestHandler();
 const proverb = require("./proverb");
 app.prepare().then(() => {
   const expressServer = express();
-  expressServer.use(cors()); // CORS 미들웨어 추가
+  expressServer.use(cors());
 
   expressServer.use("/static", express.static("./src/calc"));
   const httpServer = createServer(expressServer);
