@@ -6,8 +6,16 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <h1>기말 고사 대비 연습문제</h1>
-      <h3></h3>
-      <a href="/sample.zip">다운로드</a>
+      <div className={styles.question}>
+        <h3>{"질문사항은 여기로"}</h3>
+        <Image
+          src="/assets/qr.png"
+          width={100}
+          height={100}
+          alt="Picture of the author"
+        />
+      </div>
+      <a href="/sample.zip">템플릿 다운로드</a>
       <div className={styles.task}>
         <Link href={"/static"}>
           <h3>{"1. 계산기 구현 << 클릭 "}</h3>
