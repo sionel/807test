@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 
   logger.info(`이름 : ${name} : 점수 : ${clientScore}`);
 
-  if (typeof score !== "number") {
+  if (typeof clientScore !== "number") {
     return NextResponse.json("서식이 잘못되었습니다!", {
       status: 200,
       headers: {
