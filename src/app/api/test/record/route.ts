@@ -8,7 +8,7 @@ let score = 10;
 export async function POST(request: NextRequest) {
   const { name, score: clientScore } = await request.json();
 
-  logger.info(`이름 : ${name}`);
+  logger.info(`이름 : ${name} : 점수 : ${clientScore}`);
 
   if (typeof score !== "number") {
     return new Response("서식이 잘못되었습니다!", {
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, application/json",
       },
     });
   }
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, application/json",
       },
     });
   } else {
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, application/json",
       },
     });
   }
@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, application/json",
       },
     });
   } else {
@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Headers": "Content-Type, application/json",
       },
     });
   }
