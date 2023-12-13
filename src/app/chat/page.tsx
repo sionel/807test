@@ -19,6 +19,9 @@ const Chat = () => {
   }, [socket]);
 
   const addSocketListener = () => {
+    on("connect", () => {
+      console.log("test good");
+    });
     on("joinUser", joinUser);
     on("receiveMessage", receiveMessage);
   };

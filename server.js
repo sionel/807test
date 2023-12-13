@@ -20,13 +20,20 @@ app.prepare().then(() => {
   const io = new Server(httpServer, {
     cors: {
       origin: "*",
-      methods: ["GET", "POST"],
+      methods: ["GET", "POST", "PUT"],
     },
   });
-
   const chatNamespace = io.of("/chat");
 
   chatNamespace.on("connection", (socket) => {
+    fetch("http://localhost:3000/api/c0e3/chat", {
+      method: "PUT",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("서버 응답:", data);
+      });
+
     chatNamespace.emit("joinUser", {
       userCount: io.engine.clientsCount,
     });
@@ -49,6 +56,10 @@ app.prepare().then(() => {
     return handle(req, res);
   });
   expressServer.post("*", (req, res) => {
+    return handle(req, res);
+  });
+
+  expressServer.put("*", (req, res) => {
     return handle(req, res);
   });
   httpServer.listen(port, () => {

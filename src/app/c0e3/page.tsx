@@ -1,106 +1,101 @@
-import Image from "next/image";
+"use client";
+import React from "react";
 import styles from "./page.module.css";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>기말 고사 대비 연습문제</h1>
-      <h3></h3>
-      <a href="/sample.zip">다운로드</a>
+      <h1>B 분반 기말고사 문제</h1>
       <div className={styles.task}>
-        <Link href={"/static"}>
-          <h3>{"1. 계산기 구현 << 클릭 "}</h3>
-        </Link>
-        <strong>2항 사칙연산이 가능한 계산기를 구현하라</strong>
-        <strong>0~100 까지의 자연수 계산이 가능하여야 한다</strong>
-      </div>
-      <div className={styles.task}>
-        <Link href={"/apitest"}>
-          <h3>{"2. api 적용 구현 << 클릭 "}</h3>
-        </Link>
-        <strong>api 명세를 보고 다음과 같은 기능을 구현하라</strong>
-        <ul>
-          <li>get api를 사용하여 반환되는 값을 나타내라</li>
-          <li>post api를 사용하여 반환되는 값을 나타내라</li>
-        </ul>
-        <hr />
-        <h3>API 명세서</h3>
-        <ul>
-          <div className="endpoint">
-            <h4>1. POST 테스트</h4>
-            <strong>POST : </strong>
-            <code>http://113.198.233.57:3000/api/test/record</code>
-          </div>
-          <div className="description">
-            <h4>Description</h4>
-            <p>
-              본인의 이름과 점수를 서버로 전송하고, 서버로부터 반환되는 메시지를
-              출력합니다.
-              <br /> score에 담아서 보낸 점수는 100을 나눈 나머지 값을
-              반환합니다
-            </p>
-          </div>
-          <div className="request-format">
-            <h4>Request Format</h4>
-            <ul>
-              <li>
-                <strong>Method :</strong> POST
-              </li>
-              <li>
-                <strong>Content-Type :</strong> <code>application/json</code>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Request Body</h4>
-            <pre>{`{  name: string ,  score: number}`}</pre>
-          </div>
-          <hr />
-          <div className="endpoint">
-            <h4>2. GET 테스트</h4>
-            <strong>GET : </strong>
-            <code>
-              GET http://113.198.233.57:3000/api/test/record?type=score
-            </code>
-          </div>
-          <div className="description">
-            <h4>Description</h4>
-            <p>서버로부터 반환되는 메시지를 출력합니다.</p>
-          </div>
-          <div className="request-format">
-            <h4>Request Format</h4>
-            <ul>
-              <li>
-                <strong>Method :</strong> GET
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </div>
-      <div className={styles.task}>
-        <Link href={"/chat"}>
-          <h3>{"3. 채팅 구현 << 클릭 "}</h3>
-        </Link>
-        <strong>
-          소캣 서버를 연결하여 다음과 같은 기능이 들어간 채팅을 구현하라
-        </strong>
-        <ul>
-          <li>소캣 서버에 입장하여 얻을 수 있는 유저의 수를 표시하라</li>
-          <li>Date 함수를 이용하여 오늘 날짜를 표현하라</li>
-          <li>소캣 통신으로 채팅 송수신이 가능하도록 하라</li>
+        <h2>다음 요구사항을 보고 기능을 구현하라</h2>
+        <ol>
           <li>
-            넘어오는 데이터중 전송시간으로 언제 보낸 메시지인지 확인 할 수 있게
-            하라
+            이름과 학번을 적을 입력창과 버튼을 만들어 본인의 이름을 등록하는
+            post api(1)를 참고하여 구현하라
+            <br />
+            반환되는 데이터는 등록된 사람의수가 json 형식으로 담겨오고 이를
+            <br />
+            <strong>{`"{studentCount}명의 학생이 post를 하였습니다.`}</strong>
+            <br />
+            라고 표현이 되어야 한다
           </li>
-        </ul>
-        <hr />
-        <h3>socket 명세서</h3>
-        <ul>
-          <div className="endpoint">
-            <strong>socket : </strong>
-            <code>http://113.198.233.57:3000/chat</code>
-          </div>
+          <li>
+            번호를 적을 입력창과 버튼을 만들어 1~100까지의 속담을 가져오는 get
+            api(2)를 참고하여 구현하라
+            <br />
+            반환되는 속담은 텍스트로 오며 2초 뒤에 alert창을 활용하여 나타낸다.
+          </li>
+          <li>소캣 주소(3)를 참고하여 소캣 서버에 연결하라</li>
+          <li>
+            소캣 통신으로 채팅의 송수신이 가능하도록 하라. 송수신의 이벤트는
+            소캣 이벤트(4)(5)를 참고하여라
+            <br />
+            각 메시지는 순차적으로 쌓여야 하며 다음과 같은 형식으로 나타나야
+            한다.
+            <br />
+            <strong>{`"({timeStamp}){studentName}님 : {message}"`}</strong>의
+            형식이며 timeStamp는 00:00:00 형식의 시,분,초로 나타낸다
+          </li>
+        </ol>
+      </div>
+      <div className={styles.task}>
+        <h2>API 및 통신 명세서</h2>
+        <ol>
+          <h4>
+            <li>POST API 명세서</li>
+          </h4>
+          <strong>
+            {`post api 주소 : http://113.198.233.57:3000/api/c0e3/chat`}
+          </strong>
+          <br />
+          <br />
+          <table>
+            <thead>
+              <tr className={styles.flexContainer}>
+                <th>설명</th>
+                <th>request.body 타입</th>
+                <th>response.body</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className={styles.flexContainer}>
+                <td>본인 정보 등록</td>
+                <td>{`{name : string , number : number}`}</td>
+                <td>{"{studentCount}"}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <h4>
+            <li>GET API 명세서</li>
+          </h4>
+          <strong>
+            {`get api 주소 : http://113.198.233.57:3000/api/c0e3/chat?num={number}`}
+          </strong>
+          <br />
+          <br />
+          <table>
+            <thead>
+              <tr className={styles.flexContainer}>
+                <th>설명</th>
+                <th>response.body</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className={styles.flexContainer}>
+                <td>
+                  {`{number}에 1~100 까지의 숫자가 입력이 되면 해당하는 속담이 반환된다.`}
+                </td>
+                <td>속담 문자열</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>
+            <li>소켓 명세서</li>
+          </h4>
+          <strong>소캣 주소 : http://113.198.233.57:3000/c0e3/chat</strong>
+
+          <br />
           <br />
           <strong>수신 이벤트</strong>
           <table>
@@ -113,15 +108,14 @@ export default function Home() {
             </thead>
             <tbody>
               <tr className={styles.flexContainer}>
-                <td>joinUser</td>
-                <td>새로운 유저가 연결됨</td>
-                <td>userCount : 유저 수</td>
-              </tr>
-              <tr className={styles.flexContainer}>
-                <td>receiveMessage</td>
-                <td>메시지 수신</td>
                 <td>
-                  userName : 유저 이름 message : 메시지 timeStamp : 전송시간
+                  <strong>(4)</strong>message
+                </td>
+                <td>채팅 수신시 받는 내용</td>
+                <td>
+                  {
+                    "{studentName:이름, studentNumber: 학번, message: 채팅내용 }"
+                  }
                 </td>
               </tr>
             </tbody>
@@ -138,13 +132,19 @@ export default function Home() {
             </thead>
             <tbody>
               <tr className={styles.flexContainer}>
-                <td>sendMessage</td>
-                <td>메시지 전송</td>
-                <td>userName : 유저 이름 message : 메시지</td>
+                <td>
+                  <strong>(5)</strong>message
+                </td>
+                <td>채팅 전송시</td>
+                <td>
+                  {
+                    "{studentName:이름, studentNumber: 학번, message: 채팅내용 , timeStamp: 전송시간 }"
+                  }
+                </td>
               </tr>
             </tbody>
           </table>
-        </ul>
+        </ol>
       </div>
     </main>
   );
