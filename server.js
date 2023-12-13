@@ -26,14 +26,6 @@ app.prepare().then(() => {
   const chatNamespace = io.of("/chat");
 
   chatNamespace.on("connection", (socket) => {
-    fetch("http://localhost:3000/api/c0e3/chat", {
-      method: "PUT",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("서버 응답:", data);
-      });
-
     chatNamespace.emit("joinUser", {
       userCount: io.engine.clientsCount,
     });
@@ -52,13 +44,31 @@ app.prepare().then(() => {
     });
   });
 
+  const ASpace = io.of("/bfa4");
+  ASpace.on("connection", (socket) => {
+    console.log("test conn");
+    socket.on("changeScore", (data) => {
+      ASpace.emit("changeScore", {
+        ...data,
+      });
+    });
+
+    setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * proverb.length);
+      socket.emit("proverb", {
+        proverb: proverb[randomIndex],
+      });
+    }, 10000);
+  });
+
+  const BSpace = io.of("/c0e3");
+
   expressServer.get("*", (req, res) => {
     return handle(req, res);
   });
   expressServer.post("*", (req, res) => {
     return handle(req, res);
   });
-
   expressServer.put("*", (req, res) => {
     return handle(req, res);
   });

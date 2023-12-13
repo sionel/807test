@@ -104,7 +104,7 @@ export default function Home() {
                   }
                 </td>
                 <td>
-                  {`{name : string, score: number , type : 'kor' || 'eng'}`}
+                  {`{userName : string, score: number , type : 'kor' || 'eng'}`}
                 </td>
                 <td>{"XX점수를 XX점으로 설정하였습니다."}</td>
               </tr>
